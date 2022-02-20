@@ -26,7 +26,6 @@ export function Tasks() {
     setTasks([...tasks])
   }, [tasks]) 
   return (
-    <>
       <div className="main-container">
         <div className="background-header">
           <h3>To.do</h3>
@@ -34,8 +33,8 @@ export function Tasks() {
         <div className="card-container">
           <h3 className="title-container">Minhas Tasks</h3>
           <div className="add-task-container">
-            <input type="text" onChange={(ev) => setNewTask(ev.target.value)} value={newTask}/>
-            <button disabled={!Boolean(newTask.length)} onClick={() => {
+            <input type="text" onChange={(ev: { target: { value: any; }; }) => setNewTask(ev.target.value)} value={newTask} placeholder="Adicionar novo todo"/>
+            <button data-testid="add-task-button" disabled={!Boolean(newTask.length)} onClick={() => {
               setTasks([...tasks, {
                 title: newTask,
                 isComplete: false,
@@ -52,8 +51,10 @@ export function Tasks() {
                     <div>
                       <FormControlLabel 
                       control={<Checkbox checked={task.isComplete} 
-                      onClick={() => updateTask(index, task)} />} label={task.title} />
-                       <Button variant="outlined" color="error" onClick={() => deleteTask(index)} className="button-delete-task">
+                      onClick={() => updateTask(index, task)} />} label={task.title}                       
+                      data-testid="task"
+                      />
+                       <Button variant="outlined" color="error" onClick={() => deleteTask(index)} className="button-delete-task" data-testid="remove-task-button">
                         X
                       </Button>
                     </div>
@@ -64,6 +65,5 @@ export function Tasks() {
           </div>
         </div>
       </div>
-    </>
   )
 }

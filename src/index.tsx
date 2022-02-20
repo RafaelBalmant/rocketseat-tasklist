@@ -1,5 +1,5 @@
-import './styles/global.scss'
-import { render } from "react-dom";
-import { App } from "./app";
+import { render } from 'react-dom'
 
-render(<App/>, document.getElementById("root"));
+import { App } from './App'
+
+render(<App />, document.getElementById('root'))
